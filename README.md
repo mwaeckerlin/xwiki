@@ -18,4 +18,4 @@ VOLUME /var/lib/tomcat7
   3. Run XWiki
 
         docker run -d --name xwiki --link xwiki-mysql:sql --volumes-from xwiki-container -p 8080:8080 mwaeckerlin/xwiki
-  4. Head your browser to http://localhost:8080/xwiki
+  4. Head your browser to http://localhost:8080
