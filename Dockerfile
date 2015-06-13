@@ -1,11 +1,14 @@
 FROM ubuntu:latest
 MAINTAINER mwaeckerlin
 
+ENV XWIKI_ROOT ROOT
+
 RUN apt-get update -y
 RUN apt-get install -y wget xml2 unzip mysql-client pwgen tomcat7 libmysql-java
 
 WORKDIR /usr/share/tomcat7/lib
 RUN ln -s ../../java/mysql-connector-java.jar .
+RUN rm -rf /var/lib/tomcat7/webapps/${XWIKI_ROOT}
 
 USER tomcat7
 WORKDIR /var/lib/tomcat7/webapps
@@ -14,7 +17,7 @@ RUN wget -qO/tmp/xwiki.war \
                                           | html2 \
                                           | sed -n 's,/html/body/pre/a/@href=\(xwiki-enterprise-web-[0-9]\+.[0-9]\+.[0-9]\+.war\),\1,p' \
                                           | sort | tail -1)
-RUN unzip /tmp/xwiki.war -d /var/lib/tomcat7/webapps/xwiki
+RUN unzip /tmp/xwiki.war -d /var/lib/tomcat7/webapps/${XWIKI_ROOT}
 RUN rm /tmp/xwiki.war
 
 USER root
