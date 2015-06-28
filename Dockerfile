@@ -4,10 +4,11 @@ MAINTAINER mwaeckerlin
 ENV XWIKI_ROOT ROOT
 
 RUN apt-get update -y
-RUN apt-get install -y wget xml2 unzip mysql-client pwgen tomcat7 libmysql-java
+RUN apt-get install -y wget xml2 unzip postgresql-client pwgen tomcat7 libpostgresql-jdbc-java libmysql-java nmap
 
 WORKDIR /usr/share/tomcat7/lib
 RUN ln -s ../../java/mysql-connector-java.jar .
+RUN ln -s ../../java/postgresql-jdbc4-*.jar .
 RUN rm -rf /var/lib/tomcat7/webapps/${XWIKI_ROOT}
 
 USER tomcat7
@@ -19,6 +20,7 @@ RUN wget -qO/tmp/xwiki.war \
                                           | sort | tail -1)
 RUN unzip /tmp/xwiki.war -d /var/lib/tomcat7/webapps/${XWIKI_ROOT}
 RUN rm /tmp/xwiki.war
+RUN cp /usr/share/java/postgresql-jdbc4-*.jar /var/lib/tomcat7/webapps/${XWIKI_ROOT}/WEB-INF/lib/
 
 USER root
 RUN apt-get autoremove --purge -y wget xml2 unzip
