@@ -4,8 +4,8 @@ Running on Tomcat 7, connect to external MySQL.
 
 ## Communication
 
-EXPOSE 8080
-VOLUME /var/lib/tomcat7
+        EXPOSE 8080
+        VOLUME /var/lib/tomcat7
 
 ## Run
 
@@ -18,4 +18,4 @@ VOLUME /var/lib/tomcat7
   3. Run XWiki
 
         docker run -d --name xwiki --link xwiki-mysql:sql --volumes-from xwiki-container -p 8080:8080 xwiki
-  4. Head your browser to http://localhost:8080/xwiki
+  4. Head your browser to http://localhost:8080
