@@ -95,4 +95,4 @@ if ! grep -q environment.permanentDirectory /var/lib/tomcat7/webapps/${XWIKI_ROO
 fi
 
 echo "**** Run Tomcat"
-CATALINA_HOME=/usr/share/tomcat7 CATALINA_TMPDIR=/tmp CATALINA_BASE=/var/lib/tomcat7 /usr/share/tomcat7/bin/catalina.sh run
+CATALINA_HOME=/usr/share/tomcat7 CATALINA_TMPDIR=/tmp CATALINA_BASE=${DATA_BASE} /usr/share/tomcat7/bin/catalina.sh run

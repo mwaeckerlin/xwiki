@@ -4,8 +4,8 @@ Running on Tomcat 7, connect to external MySQL.
 
 ## Communication
 
-EXPOSE 8080
-VOLUME /var/lib/tomcat7
+        EXPOSE 8080
+        VOLUME /var/lib/tomcat7
 
 ## Run
 
