@@ -7,6 +7,7 @@ ENV TARGETPATH ${DATA_BASE}/webapps/${TARGET]
 
 RUN apt-get update -y
 RUN apt-get install -y wget xml2 unzip postgresql-client pwgen tomcat7 libpostgresql-jdbc-java libmysql-java nmap
+RUN apt-get install -y mysql-client-5.5
 
 WORKDIR /usr/share/tomcat7/lib
 RUN ln -s ../../java/mysql-connector-java.jar .
